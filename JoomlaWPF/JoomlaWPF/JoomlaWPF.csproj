@@ -107,6 +107,20 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LeftModule\LeftModule.csproj">
+      <Project>{c731a508-e9b0-499f-b258-120cdbf24e04}</Project>
+      <Name>LeftModule</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MiddleModule\MiddleModule.csproj">
+      <Project>{e2fbbfe4-e8fb-4694-9382-5d86a6e52f66}</Project>
+      <Name>MiddleModule</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RightModule\RightModule.csproj">
+      <Project>{affa5bbe-d70a-423c-9804-26ceeb6a3ee7}</Project>
+      <Name>RightModule</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
