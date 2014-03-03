@@ -5,7 +5,9 @@ Front end and back end of Joomla! web portal in WPF version
 
 This project is not planned to be finished. Idea is to learn  Microsoft Prism and Autofac. I will have front end and backend WPF version of Joomla! web portal.
 
-All aplication have to be created with styles and user controles. Also, everything has to be accessed over the keyboard. 
+Entire aplication have to be created with styles and user controles. Also, everything has to be accessed over the keyboard. 
+
+For the first version user controles are maybe not necesseary, since I don't know how difficult will be.
 
 ### Front end ###
 
