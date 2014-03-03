@@ -7,8 +7,8 @@
     <ProjectGuid>{E2FBBFE4-E8FB-4694-9382-5D86A6E52F66}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Middle</RootNamespace>
-    <AssemblyName>Middle</AssemblyName>
+    <RootNamespace>MiddleModule</RootNamespace>
+    <AssemblyName>MiddleModule</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

@@ -7,8 +7,8 @@
     <ProjectGuid>{AFFA5BBE-D70A-423C-9804-26CEEB6A3EE7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Right</RootNamespace>
-    <AssemblyName>Right</AssemblyName>
+    <RootNamespace>RightModule</RootNamespace>
+    <AssemblyName>RightModule</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

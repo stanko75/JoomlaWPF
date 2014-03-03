@@ -7,8 +7,8 @@
     <ProjectGuid>{C731A508-E9B0-499F-B258-120CDBF24E04}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Left</RootNamespace>
-    <AssemblyName>Left</AssemblyName>
+    <RootNamespace>LeftModule</RootNamespace>
+    <AssemblyName>LeftModule</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

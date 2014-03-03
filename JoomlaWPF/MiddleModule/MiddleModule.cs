@@ -1,7 +1,7 @@
 ﻿using Microsoft.Practices.Prism.MefExtensions.Modularity;
 using Microsoft.Practices.Prism.Modularity;
 
-namespace Middle
+namespace MiddleModule
 {
   [ModuleExport(typeof(MiddleModule))]
   public class MiddleModule : IModule
