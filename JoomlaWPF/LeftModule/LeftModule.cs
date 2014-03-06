@@ -8,7 +8,7 @@ namespace LeftModule
   {
     public void Initialize()
     {
-      throw new System.NotImplementedException();
+      
     }
   }
 }
