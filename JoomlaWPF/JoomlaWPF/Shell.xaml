@@ -9,8 +9,8 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <ContentControl Grid.Column="0" prism:RegionManager.RegionName="LeftModule"></ContentControl>
-        <ContentControl Grid.Column="1" prism:RegionManager.RegionName="MiddleModule"></ContentControl>
-        <ContentControl Grid.Column="2" prism:RegionManager.RegionName="RightModule"></ContentControl>
+        <ContentControl Grid.Column="0" prism:RegionManager.RegionName="LeftRegion"></ContentControl>
+        <ContentControl Grid.Column="1" prism:RegionManager.RegionName="MiddleRegion"></ContentControl>
+        <ContentControl Grid.Column="2" prism:RegionManager.RegionName="RightRegion"></ContentControl>
     </Grid>
 </Window>
