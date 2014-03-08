@@ -7,10 +7,10 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
         <TabControl>
-            <TabItem Header="TabItem">
+            <TabItem x:Name="ArticleTree"  Header="Tree view">
                 <Grid Background="#FFE5E5E5"/>
             </TabItem>
-            <TabItem Header="TabItem">
+            <TabItem x:Name="ArticleTable"  Header="Article table">
                 <Grid Background="#FFE5E5E5"/>
             </TabItem>
         </TabControl>
