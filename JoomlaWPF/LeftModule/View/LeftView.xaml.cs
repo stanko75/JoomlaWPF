@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.Composition;
 using System.Windows.Controls;
+using LeftModule.ViewModel;
 using Microsoft.Practices.Prism.Regions;
 
 namespace LeftModule.View
@@ -10,9 +11,10 @@ namespace LeftModule.View
   public partial class LeftView : UserControl
   {
     [ImportingConstructor]
-    public LeftView()
+    public LeftView(ArticlesViewModel avm)
     {
       InitializeComponent();
+      this.DataContext = avm;
     }
   }
 }
