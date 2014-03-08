@@ -4,13 +4,13 @@
         xmlns:prism="http://www.codeplex.com/CompositeWPF"
         Title="Shell" Height="300" Width="300">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <ContentControl Grid.Row="0" prism:RegionManager.RegionName="LeftModule"></ContentControl>
-        <ContentControl Grid.Row="1" prism:RegionManager.RegionName="MiddleModule"></ContentControl>
-        <ContentControl Grid.Row="2" prism:RegionManager.RegionName="RightModule"></ContentControl>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <ContentControl Grid.Column="0" prism:RegionManager.RegionName="LeftModule"></ContentControl>
+        <ContentControl Grid.Column="1" prism:RegionManager.RegionName="MiddleModule"></ContentControl>
+        <ContentControl Grid.Column="2" prism:RegionManager.RegionName="RightModule"></ContentControl>
     </Grid>
 </Window>
