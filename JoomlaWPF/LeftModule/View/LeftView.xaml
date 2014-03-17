@@ -9,7 +9,7 @@
         <TabControl>
             <TabItem x:Name="ArticleTree"  Header="Tree view">
                 <Grid Background="#FFE5E5E5">
-                    <TreeView ItemsSource="{Binding Articles}"/>
+                    <TreeView ItemsSource="{Binding CategoriesList}"/>
                 </Grid>
             </TabItem>
             <TabItem x:Name="ArticleTable"  Header="Article table">

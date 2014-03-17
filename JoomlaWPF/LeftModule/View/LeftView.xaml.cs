@@ -11,7 +11,7 @@ namespace LeftModule.View
   public partial class LeftView : UserControl
   {
     [ImportingConstructor]
-    public LeftView(ArticlesViewModel avm)
+    public LeftView(CategoriesViewModel avm)
     {
       InitializeComponent();
       this.DataContext = avm;
