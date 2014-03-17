@@ -27,13 +27,13 @@ namespace LeftModule.ViewModel
 
       string MyConString =
       "SERVER=myServer;" +
-      "DATABASE=MyDb;" +
+      "DATABASE=myDb;" +
       "UID=myUid;" +
       "PASSWORD=myPass;Convert Zero Datetime=True";
 
       var connection = new MySqlConnection(MyConString);
 
-      string sql = "select * from jos_categories where parent_id = 0";
+      string sql = "select * from jos_categories order by level";
 
       var cmdSel = new MySqlCommand(sql, connection);
 
@@ -42,24 +42,19 @@ namespace LeftModule.ViewModel
       MySqlDataReader dataReader = cmdSel.ExecuteReader();
 
       CategoriesList = new List<ICategory>();
-      while (dataReader.Read())
-      {
-        CategoriesList.Add(new CategoriesModel { Name = dataReader["title"].ToString() });
-      }
-      sql = "select * from jos_categories";
-      connection.Close();
-      cmdSel = new MySqlCommand(sql, connection);
-      connection.Open();
-      dataReader = cmdSel.ExecuteReader();
       var i = 0;
       while (dataReader.Read())
       {
-        //CategoriesList.Add(new CategoriesModel { Name = dataReader["title"].ToString() });
-        CategoriesList[0].Categories.Add(new CategoriesModel { Name = dataReader["title"].ToString() });
-        //i++;
-        //CategoriesList.Add(dataReader["title"].ToString());
+        int level = int.Parse(dataReader["level"].ToString());
+        if (level == 0)
+        {
+          CategoriesList.Add(new CategoriesModel { Name = dataReader["title"].ToString() });          
+        }
+        else if (level == 1)
+        {
+          CategoriesList[level - 1].Categories.Add(new CategoriesModel { Name = dataReader["title"].ToString() });          
+        }
       }
-
     }
   }
 }

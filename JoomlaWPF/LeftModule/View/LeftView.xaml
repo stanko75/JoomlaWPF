@@ -8,9 +8,9 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
         <TabControl>
-            <TabItem x:Name="ArticleTree"  Header="Tree view">
+            <TabItem x:Name="ArticleTree" Header="Tree view">
                 <Grid Background="#FFE5E5E5">
-                    <TreeView ItemsSource="{Binding CategoriesList}" Margin="10" Height="200">
+                    <TreeView ItemsSource="{Binding CategoriesList}">
                         <TreeView.ItemTemplate>
                             <HierarchicalDataTemplate ItemsSource="{Binding Categories}" DataType="{x:Type viewModel:ICategory}">
                                 <TreeViewItem Header="{Binding Name}"/>
