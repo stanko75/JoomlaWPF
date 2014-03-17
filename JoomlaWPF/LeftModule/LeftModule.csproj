@@ -70,6 +70,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="LeftModule.cs" />
+    <Compile Include="Model\CategoriesModel.cs" />
+    <Compile Include="Model\ICategory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\CategoriesViewModel.cs" />
     <Compile Include="View\LeftView.xaml.cs">

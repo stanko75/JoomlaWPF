@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.Composition;
+using LeftModule.Model;
 using MySql.Data.MySqlClient;
 
 namespace LeftModule.ViewModel
@@ -7,37 +8,58 @@ namespace LeftModule.ViewModel
   [Export]
   public class CategoriesViewModel
   {
-    public List<string> CategoriesList { get; set; }
+    public List<ICategory> CategoriesList
+    {
+      get { return m_categories; }
+      set
+      {
+        m_categories = value;
+        //NotifiyPropertyChanged("Folders");
+      }
+    }
+
+    private List<ICategory> m_categories;
 
     [ImportingConstructor]
     public CategoriesViewModel()
     {
-      string MyConString =
-"SERVER=myServer" +
-"DATABASE=myDb;" +
-"UID=myUid;" +
-"PASSWORD=myPass;Convert Zero Datetime=True";
+      m_categories = new List<ICategory>();
 
-      string sql = "select * from jos_categories";
+      string MyConString =
+      "SERVER=myServer;" +
+      "DATABASE=MyDb;" +
+      "UID=myUid;" +
+      "PASSWORD=myPass;Convert Zero Datetime=True";
 
       var connection = new MySqlConnection(MyConString);
+
+      string sql = "select * from jos_categories where parent_id = 0";
+
       var cmdSel = new MySqlCommand(sql, connection);
 
       connection.Open();
 
       MySqlDataReader dataReader = cmdSel.ExecuteReader();
 
-      CategoriesList = new List<string>();
+      CategoriesList = new List<ICategory>();
       while (dataReader.Read())
       {
-        CategoriesList.Add(dataReader["title"].ToString());
-        //CategoriesList[0].SubCategoriesModels = new List<CategoriesModel>();
-        //CategoriesList[0].SubCategoriesModels.Add(new CategoriesModel { Name = dataReader["title"].ToString() });
-        //ArticleRoots.Add(dataReader["title"].ToString());
-        //ttt.Name = Add(dataReader["title"].ToString());
-        //ttt.Add(new ;
+        CategoriesList.Add(new CategoriesModel { Name = dataReader["title"].ToString() });
       }
-      //return ttt;
+      sql = "select * from jos_categories";
+      connection.Close();
+      cmdSel = new MySqlCommand(sql, connection);
+      connection.Open();
+      dataReader = cmdSel.ExecuteReader();
+      var i = 0;
+      while (dataReader.Read())
+      {
+        //CategoriesList.Add(new CategoriesModel { Name = dataReader["title"].ToString() });
+        CategoriesList[0].Categories.Add(new CategoriesModel { Name = dataReader["title"].ToString() });
+        //i++;
+        //CategoriesList.Add(dataReader["title"].ToString());
+      }
+
     }
   }
 }
