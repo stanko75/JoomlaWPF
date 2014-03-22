@@ -10,6 +10,8 @@ namespace LeftModule.Model
       m_categories = new List<ICategory>();
     }
     public string Name { get; set; }
+    public int Id { get; set; }
+
     public List<ICategory> Categories
     {
       get { return m_categories; }

@@ -25,7 +25,11 @@ namespace LeftModule.ViewModel
     {
       m_categories = new List<ICategory>();
 
-      string MyConString = "SERVER=myServer;DATABASE=myDb;UID=myUid;PASSWORD=myPass;Convert Zero Datetime=True";
+      string MyConString =
+"SERVER=myServer;" +
+"DATABASE=myDb;" +
+"UID=myUid;" +
+"PASSWORD=myPass;Convert Zero Datetime=True";
 
       var connection = new MySqlConnection(MyConString);
 
@@ -43,61 +47,48 @@ namespace LeftModule.ViewModel
       {
         i++;
 
-        CategoriesList.Add(new CategoriesModel { Name = dataReader["title"].ToString() });
-
-        var childConnection = new MySqlConnection(MyConString);
-
-        string childSql = "select * from jos_categories where parent_id = " + dataReader["id"].ToString()
-                          + " order by id";
-
-        var childcmdSel = new MySqlCommand(childSql, childConnection);
-
-        childConnection.Open();
-
-        MySqlDataReader childDataReader = childcmdSel.ExecuteReader();
-
-        var childi = 0;
-        while (childDataReader.Read())
+        CategoriesList.Add(new CategoriesModel
         {
-          childi++;
-          CategoriesList[i - 1].Categories.Add(new CategoriesModel { Name = childDataReader["title"].ToString() });
+          Name = dataReader["title"].ToString(),
+          Id = int.Parse(dataReader["id"].ToString())
+        });
+      }
 
-          var childchildConnection = new MySqlConnection(MyConString);
+      CreateListRecursively(CategoriesList);
+    }
 
-          string childchildSql = "select * from jos_categories where parent_id = " + childDataReader["id"].ToString()
-                                 + " order by id";
+    private void CreateListRecursively(List<ICategory> CategoriesList)
+    {
+      int i = -1;
+      foreach (ICategory category in CategoriesList)
+      {
+        i++;
+        string MyConString =
+"SERVER=myServer;" +
+"DATABASE=myDb;" +
+"UID=myUid;" +
+"PASSWORD=myPass;Convert Zero Datetime=True";
 
-          var childchildcmdSel = new MySqlCommand(childchildSql, childchildConnection);
+        var connection = new MySqlConnection(MyConString);
 
-          childchildConnection.Open();
+        string sql = "select * from jos_categories where parent_id = " + category.Id + " order by id ";
 
-          MySqlDataReader childchildDataReader = childchildcmdSel.ExecuteReader();
+        var cmdSel = new MySqlCommand(sql, connection);
 
-          var childchildi = 0;
-          while (childchildDataReader.Read())
+        connection.Open();
+
+        MySqlDataReader dataReader = cmdSel.ExecuteReader();
+
+        while (dataReader.Read())
+        {
+          CategoriesList[i].Categories.Add(new CategoriesModel
           {
-            childchildi++;
-            CategoriesList[i - 1].Categories[childi - 1].Categories.Add(
-              new CategoriesModel { Name = childchildDataReader["title"].ToString() });
-
-            var childchildchildConnection = new MySqlConnection(MyConString);
-
-            string childchildchildSql = "select * from jos_categories where parent_id = "
-                                        + childchildDataReader["id"].ToString() + " order by id";
-
-            var childchildchildcmdSel = new MySqlCommand(childchildchildSql, childchildchildConnection);
-
-            childchildchildConnection.Open();
-
-            MySqlDataReader childchildchildDataReader = childchildchildcmdSel.ExecuteReader();
-
-            while (childchildchildDataReader.Read())
-            {
-              CategoriesList[i - 1].Categories[childi - 1].Categories[childchildi - 1].Categories.Add(
-                new CategoriesModel { Name = childchildchildDataReader["title"].ToString() });
-            }
-          }
+            Name = dataReader["title"].ToString(),
+            Id = int.Parse(dataReader["id"].ToString())
+          });
         }
+
+        CreateListRecursively(CategoriesList[i].Categories);
       }
     }
   }
