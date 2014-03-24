@@ -1,86 +1,38 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.Configuration;
-using LeftModule.Model;
-using MySql.Data.MySqlClient;
+﻿using System.ComponentModel.Composition;
 
 namespace LeftModule.ViewModel
 {
+  using System.Collections.Generic;
+
+  using Autofac;
+
+  using global::LeftModule.Model;
+  using global::LeftModule.View;
+
   [Export]
   public class CategoriesViewModel
   {
-    private string JoomlaConStr = ConfigurationManager.ConnectionStrings["JoomlaCon"].ConnectionString;
-    public List<ICategory> CategoriesList
+
+    public static List<ICategory> GetCategoriesInTree()
     {
-      get { return m_categories; }
-      set
-      {
-        m_categories = value;
-        //NotifiyPropertyChanged("Folders");
-      }
+      var scope = LeftView.Container.BeginLifetimeScope();
+      var writer = scope.Resolve<ICategoriesTreeGetter>();
+      return writer.GetCategoriesInTree();
     }
 
-    private List<ICategory> m_categories;
+    private readonly IGetCategories _output;
+    public List<ICategory> CategoriesList { get; set; }
 
     [ImportingConstructor]
     public CategoriesViewModel()
     {
-      m_categories = new List<ICategory>();
+      var builder = new ContainerBuilder();
+      builder.RegisterType<CategoriesTreeGetter>().As<ICategoriesTreeGetter>();
+      builder.RegisterType<GetJoomlaCategories>().As<IGetCategories>();
+      LeftView.Container = builder.Build();
 
-      var connection = new MySqlConnection(JoomlaConStr);
+      CategoriesList = GetCategoriesInTree();
 
-      string sql = "select * from jos_categories where level = 0 order by id ";
-
-      var cmdSel = new MySqlCommand(sql, connection);
-
-      connection.Open();
-
-      MySqlDataReader dataReader = cmdSel.ExecuteReader();
-
-      CategoriesList = new List<ICategory>();
-      var i = 0;
-      while (dataReader.Read())
-      {
-        i++;
-
-        CategoriesList.Add(new CategoriesModel
-        {
-          Name = dataReader["title"].ToString(),
-          Id = int.Parse(dataReader["id"].ToString())
-        });
-      }
-
-      CreateListRecursively(CategoriesList);
-    }
-
-    private void CreateListRecursively(List<ICategory> CategoriesList)
-    {
-      int i = -1;
-      foreach (ICategory category in CategoriesList)
-      {
-        i++;
-
-        var connection = new MySqlConnection(JoomlaConStr);
-
-        string sql = "select * from jos_categories where parent_id = " + category.Id + " order by id ";
-
-        var cmdSel = new MySqlCommand(sql, connection);
-
-        connection.Open();
-
-        MySqlDataReader dataReader = cmdSel.ExecuteReader();
-
-        while (dataReader.Read())
-        {
-          CategoriesList[i].Categories.Add(new CategoriesModel
-          {
-            Name = dataReader["title"].ToString(),
-            Id = int.Parse(dataReader["id"].ToString())
-          });
-        }
-
-        CreateListRecursively(CategoriesList[i].Categories);
-      }
     }
   }
 }
