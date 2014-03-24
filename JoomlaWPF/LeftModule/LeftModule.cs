@@ -1,18 +1,25 @@
-﻿using System.ComponentModel.Composition;
-using Microsoft.Practices.Prism.MefExtensions.Modularity;
+﻿using Microsoft.Practices.Prism.MefExtensions.Modularity;
 using Microsoft.Practices.Prism.Modularity;
-using Microsoft.Practices.Prism.Regions;
 
 namespace LeftModule
 {
+  using global::LeftModule.View;
+
+  using Microsoft.Practices.Prism.Regions;
+
   [ModuleExport(typeof(LeftModule))]
   public class LeftModule: IModule
   {
-    [Import]
-    public IRegionManager Region { get; set; }
+    private readonly IRegionManager _regionManager;
+
+    public LeftModule(IRegionManager regionManager)
+    {
+      _regionManager = regionManager;
+    }
+
     public void Initialize()
     {
-      Region.RequestNavigate("LeftRegion", "LeftView");
+      _regionManager.RegisterViewWithRegion("LeftRegion", typeof(LeftView));
     }
   }
 }

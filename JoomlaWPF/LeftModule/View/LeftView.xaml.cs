@@ -12,12 +12,11 @@ namespace LeftModule.View
   [RegionMemberLifetime(KeepAlive = false)]
   public partial class LeftView : UserControl
   {
-    public static IContainer Container { get; set; }
     [ImportingConstructor]
-    public LeftView(CategoriesViewModel avm)
+    public LeftView(CategoriesViewModel dataContext)
     {
-      InitializeComponent();
-      this.DataContext = avm;
+      this.DataContext = dataContext;
+      this.InitializeComponent();
     }
   }
 }

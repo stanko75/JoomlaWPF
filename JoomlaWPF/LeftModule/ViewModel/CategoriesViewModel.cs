@@ -13,26 +13,15 @@ namespace LeftModule.ViewModel
   public class CategoriesViewModel
   {
 
-    public static List<ICategory> GetCategoriesInTree()
-    {
-      var scope = LeftView.Container.BeginLifetimeScope();
-      var writer = scope.Resolve<ICategoriesTreeGetter>();
-      return writer.GetCategoriesInTree();
-    }
+    private ICategoriesTreeGetter categoriesTreeGetter;
 
     private readonly IGetCategories _output;
     public List<ICategory> CategoriesList { get; set; }
 
     [ImportingConstructor]
-    public CategoriesViewModel()
+    public CategoriesViewModel(ICategoriesTreeGetter categoriesTreeGetter)
     {
-      var builder = new ContainerBuilder();
-      builder.RegisterType<CategoriesTreeGetter>().As<ICategoriesTreeGetter>();
-      builder.RegisterType<GetJoomlaCategories>().As<IGetCategories>();
-      LeftView.Container = builder.Build();
-
-      CategoriesList = GetCategoriesInTree();
-
+      CategoriesList = categoriesTreeGetter.GetCategoriesInTree();
     }
   }
 }
