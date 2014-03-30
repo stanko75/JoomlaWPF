@@ -39,7 +39,6 @@
       CreateListRecursively(CategoriesList);
 
       return CategoriesList;
-      return null;
     }
 
     private void CreateListRecursively(List<ITreeCategory> CategoriesList)
