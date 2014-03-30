@@ -10,7 +10,21 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <ContentControl Grid.Column="0" prism:RegionManager.RegionName="LeftRegion"></ContentControl>
+        <GridSplitter
+                Width="3"
+                Grid.Column="1"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Stretch"
+                ResizeDirection="Auto">
+        </GridSplitter>
         <ContentControl Grid.Column="1" prism:RegionManager.RegionName="MiddleRegion"></ContentControl>
+        <GridSplitter
+                Width="3"
+                Grid.Column="1"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Stretch"
+                ResizeDirection="Auto">
+        </GridSplitter>
         <ContentControl Grid.Column="2" prism:RegionManager.RegionName="RightRegion"></ContentControl>
     </Grid>
 </Window>
