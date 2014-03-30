@@ -4,6 +4,6 @@
 
   public interface IGetCategories
   {
-    List<ICategory> GetCategories();
+    List<ITreeCategory> GetCategories();
   }
 }

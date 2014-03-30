@@ -2,10 +2,10 @@
 
 namespace LeftModule.Model
 {
-  public interface ICategory
+  public interface ITreeCategory
   {
       string Name { get; }
       int Id { get; }
-      List<ICategory> Categories { get; }
+      List<ITreeCategory> Categories { get; }
   }
 }

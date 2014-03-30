@@ -3,7 +3,7 @@
   using System.Collections.Generic;
   using System.Configuration;
 
-  using global::LeftModule.Model;
+  using Model;
 
   using MySql.Data.MySqlClient;
 
@@ -11,8 +11,9 @@
   {
     private string JoomlaConStr = ConfigurationManager.ConnectionStrings["JoomlaCon"].ConnectionString;
 
-    public List<ICategory> GetCategoriesInTree()
+    public List<ITreeCategory> GetCategoriesInTree()
     {
+      /*
       var connection = new MySqlConnection(JoomlaConStr);
 
       string sql = "select * from jos_categories where level = 0 order by id ";
@@ -23,13 +24,13 @@
 
       MySqlDataReader dataReader = cmdSel.ExecuteReader();
 
-      List<ICategory>  CategoriesList = new List<ICategory>();
+      List<ITreeCategory>  CategoriesList = new List<ITreeCategory>();
       var i = 0;
       while (dataReader.Read())
       {
         i++;
 
-        CategoriesList.Add(new CategoriesModel
+        CategoriesList.Add(new TreeCategoriesModel
         {
           Name = dataReader["title"].ToString(),
           Id = int.Parse(dataReader["id"].ToString())
@@ -38,13 +39,14 @@
 
       CreateListRecursively(CategoriesList);
 
-      return CategoriesList;
+      return CategoriesList;*/
+      return null;
     }
 
-    private void CreateListRecursively(List<ICategory> CategoriesList)
+    private void CreateListRecursively(List<ITreeCategory> CategoriesList)
     {
       int i = -1;
-      foreach (ICategory category in CategoriesList)
+      foreach (ITreeCategory category in CategoriesList)
       {
         i++;
 
@@ -60,7 +62,7 @@
 
         while (dataReader.Read())
         {
-          CategoriesList[i].Categories.Add(new CategoriesModel
+          CategoriesList[i].Categories.Add(new TreeCategoriesModel
           {
             Name = dataReader["title"].ToString(),
             Id = int.Parse(dataReader["id"].ToString())

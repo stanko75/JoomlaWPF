@@ -4,6 +4,6 @@
 
   public interface ICategoriesTreeGetter
   {
-    List<ICategory> GetCategoriesInTree();
+    List<ITreeCategory> GetCategoriesInTree();
   }
 }

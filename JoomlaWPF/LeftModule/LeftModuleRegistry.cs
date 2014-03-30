@@ -16,9 +16,9 @@
 
       builder.RegisterType<CategoriesTreeGetter>().As<ICategoriesTreeGetter>();
       builder.RegisterType<GetJoomlaCategories>().As<IGetCategories>();
-      builder.RegisterType<CategoriesViewModel>();
+      builder.RegisterType<CategoriesTreeViewModel>();
 
-      builder.RegisterType<LeftView>().UsingConstructor(typeof(CategoriesViewModel));
+      builder.RegisterType<LeftView>().UsingConstructor(typeof(CategoriesTreeViewModel));
     }
   }
 }

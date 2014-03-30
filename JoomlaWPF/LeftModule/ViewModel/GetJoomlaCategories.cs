@@ -6,7 +6,7 @@
 
   public class GetJoomlaCategories: IGetCategories
   {
-    public List<ICategory> GetCategories()
+    public List<ITreeCategory> GetCategories()
     {
       return null;
     }
