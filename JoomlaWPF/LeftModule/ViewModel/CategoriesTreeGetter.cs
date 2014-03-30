@@ -13,7 +13,6 @@
 
     public List<ITreeCategory> GetCategoriesInTree()
     {
-      /*
       var connection = new MySqlConnection(JoomlaConStr);
 
       string sql = "select * from jos_categories where level = 0 order by id ";
@@ -39,7 +38,7 @@
 
       CreateListRecursively(CategoriesList);
 
-      return CategoriesList;*/
+      return CategoriesList;
       return null;
     }
 
