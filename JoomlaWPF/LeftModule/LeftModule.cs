@@ -19,6 +19,7 @@ namespace LeftModule
 
     public void Initialize()
     {
+      //because of autofac (look at https://bitbucket.org/stmu/prism.aufofacextension/wiki/Home section A prism module (autofac independent))
       _regionManager.RegisterViewWithRegion("LeftRegion", typeof(LeftView));
     }
   }
